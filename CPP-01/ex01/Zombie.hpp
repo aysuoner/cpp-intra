@@ -2,24 +2,26 @@
 # define ZOMBIE_HPP
 
 #include <iostream>
-
-using std::cout;
-using std::endl;
-using std::string;
-using std::cin;
-using std:: getline;
+#include <string>
 
 class	Zombie
 {
 	private:
-		string	_name;
+		std::string	_name;
 	public:
+		//constuctor - destuctor
 		Zombie();
 		~Zombie();
+
+		//setter_getter
+		void		set_name(std::string name);
+		std::string	get_name() const;
+
+		//member func
 		void	announce(void);
-		void	set_name(string name);
+		void	delete_obj(Zombie *zom);
 };
 
-Zombie	*zombieHorde(int N, string name);
+Zombie	*zombieHorde(int N, std::string name);
 
 #endif
