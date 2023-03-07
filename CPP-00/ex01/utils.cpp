@@ -1,56 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.cpp                                          :+:      :+:    :+:   */
+/*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:35:03 by aoner             #+#    #+#             */
-/*   Updated: 2022/12/10 22:34:50 by aoner            ###   ########.fr       */
+/*   Updated: 2023/03/06 21:51:21 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.hpp"
+#include "Utils.hpp"
+
+std::string trim(std::string str)
+{
+    size_t startpos = str.find_first_not_of(" \t\r\n");
+    if (startpos != std::string::npos) {
+        str.erase(0, startpos);
+    }
+
+    size_t endpos = str.find_last_not_of(" \t\r\n");
+    if (endpos != std::string::npos) {
+        str.erase(endpos + 1);
+    }
+
+    return str;
+}
+
+void	top_framework(void)
+{
+	std::cout << "------------------------------------------------------" << std::endl;
+	std::cout << "| index |   first name |   last  name |   nick  name |" << std::endl;
+	std::cout << "------------------------------------------------------" << std::endl;
+	
+}
 
 void	put_space(int len)
 {
 	while (len > 0 )
 	{
-		cout << " ";
+		std::cout << " ";
 		len--;
 	}
 }
 
-void	top_framework(void)
-{
-	cout << "------------------------------------------------------" << endl;
-	cout << "| index |   first name |   last  name |   nick  name |" << endl;
-	cout << "------------------------------------------------------" << endl;
-	
-}
-
-void	welcome_info(void)
-{
-	cout << "\001\033[1m\033[32m\002\n	phonebook uygulamasina hosgeldiniz!\n \001\033[0;0m\002" << endl;
-	cout << "\001\033[1m\033[37m\002	uygulama 3 komuttan olusmaktadir\001\033[0;0m\002" << endl;
-	cout << "\001\033[1m\033[37m\002	ADD: rehbere kisi ekler\001\033[0;0m\002" << endl;
-	cout << "\001\033[1m\033[37m\002	SEARCH: rehberdeki kisi hakkında detayli bilgi verir\001\033[0;0m\002" << endl;
-	cout << "\001\033[1m\033[37m\002	EXIT: phonebook uygulamasindan cikar\001\033[0;0m\002" << endl;
-}
-
-int	space_string(string info)
-{
-	int i;
-
-	i = 0;
-	while (info[i] && isspace(info[i]))
-		i++;
-	if (!info[i]) //yani bosluklardan olusan input;
-		return(0);
-	return(1); //icinde karakter var.
-}
-
-int	is_valid_num(string number)
+int	is_valid_num(std::string number)
 {
 	int i;
 
@@ -65,28 +59,40 @@ int	is_valid_num(string number)
 	return (1);
 }
 
-void	info_ctrl(string *input, string display, int type)
+static int	space_string(std::string info)
 {
-	cout << display;
+	int i;
+
+	i = 0;
+	while (info[i] && isspace(info[i]))
+		i++;
+	if (!info[i])
+		return(0);
+	return(1);
+}
+
+static void	info_ctrl(std::string *input, std::string display, int type)
+{
+	std::cout << display;
 	if (type == 0)
 	{
-		while (getline(cin, (*input)) && ((*input).length() == 0 || !space_string(*input)))
+		while (std::getline(std::cin, (*input)) && ((*input).length() == 0 || !space_string(*input)))
 		{
-			cout << "\033[31mBu alan bos birakilamaz!\033[0m" << std::endl;
-			cout << display;
-		}	
+			std::cout << "\033[31mField cannot be left blank!\033[0m" << std::endl;
+			std::cout << display;
+		}
 	}
 	else if (type == 1)
 	{
-		while (getline(cin, (*input)) && ((*input).length() == 0 || !is_valid_num(*input)))
+		while (std::getline(std::cin, (*input)) && ((*input).length() == 0 || !is_valid_num(*input)))
 		{
-			cout << "\033[31mLutfen gecerli bir phone number giriniz!\033[0m" << std::endl;
-			cout << display;
+			std::cout << "\033[31mPlease enter a valid phone number!\033[0m" << std::endl;
+			std::cout << display;
 		}
 	}
 }
 
-void	get_info(string info[5])
+void	get_info(std::string info[5])
 {
 	int i;
 
@@ -100,5 +106,14 @@ void	get_info(string info[5])
 	info_ctrl(&info[i], "phone num: ", 1);
 	i++;
 	info_ctrl(&info[i], "dark secret: ", 0);
-	cout << "\033[32mContact added successfully.\n\033[0m" << endl;
+	std::cout << "\033[32mContact added successfully!\n\033[0m" << std::endl;
+}
+
+void	welcome_info(void)
+{
+	std::cout << "\001\033[1m\033[32m\002\n	Welcome to the phonebook program!\n \001\033[0;0m\002" << std::endl;
+	std::cout << "\001\033[1m\033[37m\002	The program consists of 3 commands.\001\033[0;0m\002" << std::endl;
+	std::cout << "\001\033[1m\033[37m\002	ADD:	adds a contact to the phonebook.\001\033[0;0m\002" << std::endl;
+	std::cout << "\001\033[1m\033[37m\002	EXIT:	exits the program.\001\033[0;0m\002" << std::endl;
+	std::cout << "\001\033[1m\033[37m\002	SEARCH:	gives detailed information about the person.\001\033[0;0m\002" << std::endl;
 }

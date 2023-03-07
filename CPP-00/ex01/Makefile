@@ -6,9 +6,9 @@ RM		= rm -rf
 
 OBJDIR	= .objFiles
 
-SRCS	=  main.cpp Contact.cpp PhoneBook.cpp utils.cpp
+SRCS	=  main.cpp Contact.cpp PhoneBook.cpp Utils.cpp
 OBJS 	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
-HEADER	= PhoneBook.hpp Contact.hpp utils.hpp
+HEADER	= PhoneBook.hpp Contact.hpp Utils.hpp
 
 #Colors:
 GREEN		=	\e[92;5;118m
