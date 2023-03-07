@@ -1,22 +1,31 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 16:00:10 by aoner             #+#    #+#             */
+/*   Updated: 2023/03/07 16:00:11 by aoner            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-using std:: cout;
-using std:: endl;
-using std:: string;
+#include <iostream>
+#include <string>
 
 int main()
 {
-	string	str = "HI THIS IS BRAIN";
-	string 	*stringPTR;
-	string	&stringREF = str;
+	std::string	str = "HI THIS IS BRAIN";
+	std::string	*stringPTR;
+	std::string	&stringREF = str;
 
 	stringPTR = &str;
-	cout << "string variable ADD:	" << &str << endl;
-	cout << "stringPTR ADD:		" << stringPTR << endl;
-	cout << "stringREF ADD:		" << &stringREF << endl;
-	cout << endl;
-	cout << "string:		" << str << endl;
-	cout << "stringPTR:	" << *stringPTR << endl;
-	cout << "stringREF:	" << stringREF << endl;
+	std::cout << "\nstring variable addr.:	" << &str << std::endl;
+	std::cout << "stringPTR addr.:	" << stringPTR << std::endl;
+	std::cout << "stringREF addr.:	" << &stringREF << std::endl;
+	std::cout << "------------------"<<std::endl;
+	std::cout << "string:		" << str << std::endl;
+	std::cout << "stringPTR:	" << *stringPTR << std::endl;
+	std::cout << "stringREF:	" << stringREF << std::endl;
 	return(0);
 }
