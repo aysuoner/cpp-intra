@@ -8,6 +8,7 @@ OBJDIR	= .objFiles
 
 SRCS	= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
+HEADER	= Weapon.hpp HumanA.hpp HumanB.hpp
 
 #Colors:
 GREEN		=	\e[92;5;118m
@@ -18,11 +19,11 @@ CURSIVE		=	\e[33;3m
 
 all: $(NAME)
 	
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADER)
 	@$(CC) $(OBJS) -o $(NAME)
 	@printf "$(_SUCCESS) $(GREEN)- Executable ready.\n$(RESET)"
 
-$(OBJDIR)/%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp $(HEADER)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
