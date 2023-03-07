@@ -6,7 +6,7 @@ RM		= rm -rf
 
 OBJDIR	= .objFiles
 
-SRCS	= main.cpp replace.cpp
+SRCS	= main.cpp
 OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 #Colors:
