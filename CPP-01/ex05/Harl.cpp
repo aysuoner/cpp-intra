@@ -6,7 +6,7 @@
 /*   By: aoner <aoner@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:25:33 by aoner             #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:21 by aoner            ###   ########.fr       */
+/*   Updated: 2023/03/08 13:57:19 by aoner            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,30 @@ void	Harl::error(void)
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
+
+/* complain() fonksiyonu, öncelikle bir işaretçi dizisi (p) tanımlar ve bu diziyi,
+uygun fonksiyonların işaretçileri ile doldurur.
+void(Harl::*p[4])(void) ifadesi, Harl sınıfına ait fonksiyon işaretçisi türü olan
+void(Harl::*)(void) kullanılarak bir işaretçi dizisi oluşturur. */
+/* pointer to member function" (üye fonksiyon işaretçisi) olarak adlandırılır.
+Bir sınıfın üye fonksiyonlarını çağırmak için kullanılır. */
 void	Harl::complain(std::string level)
 {
-	void(Harl:: *p[4])(void) = {&Harl::debug, &Harl::error, &Harl::info, &Harl::warning};
+	//pointer to member func tanımlanması
+	/*ifadesi, p adında bir dizi oluşturur. Bu dizi,
+	Harl sınıfının üye fonksiyonlarına işaret etmektedir.
+	void ifadesi işaret edilen fonksiyonun dönüş değeri, 
+	Harl::* ifadesi ise işaret edilen fonksiyonun bir üye
+	fonksiyon olduğunu belirtir.
+	(void) ifadesi ise işaret edilen fonksiyonun parametre almadığını belirtir.*/
+	void(Harl:: *p[4])(void) = {&Harl::debug,
+								&Harl::error,
+								&Harl::info,
+								&Harl::warning};
 	
+	//seviyelerin tutulduğu string dizisi
+	/*  Bu dizi, gelen parametreye karşılık gelen seviyeleri içerir.
+	Bu seviyeler, p dizisindeki fonksiyon işaretçilerinin sırası ile eşleştirilmiştir. */
 	std::string lvls[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (int i = 0; i < 4 ; i++)

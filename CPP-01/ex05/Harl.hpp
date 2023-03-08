@@ -2,6 +2,7 @@
 # define HARL_HPP
 
 #include <iostream>
+#include <string>
 
 //Bu alıştırmanın amacı, üye işlevlerine işaretçiler kullanmaktır. if/else if kullanmadan. 
 class Harl
